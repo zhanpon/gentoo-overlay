@@ -1,0 +1,15 @@
+diff --git a/lib/NGT/CMakeLists.txt b/lib/NGT/CMakeLists.txt
+index db4c436..9374c82 100644
+--- a/lib/NGT/CMakeLists.txt
++++ b/lib/NGT/CMakeLists.txt
+@@ -38,8 +38,8 @@ if( ${UNIX} )
+ 		ngt
+ 		ngtstatic
+ 		RUNTIME DESTINATION bin
+-		LIBRARY DESTINATION lib
+-		ARCHIVE DESTINATION lib)
++		LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++		ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+ 	install(FILES ${HEADER_FILES} ${CMAKE_CURRENT_BINARY_DIR}/defines.h  ${CMAKE_CURRENT_BINARY_DIR}/version_defs.h DESTINATION include/NGT)
+ 	install(FILES ${NGTQ_HEADER_FILES} DESTINATION include/NGT/NGTQ)
+ endif()
