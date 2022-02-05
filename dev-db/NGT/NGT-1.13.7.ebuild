@@ -23,6 +23,7 @@ PATCHES=(
 	"${FILESDIR}"/${P}-setup-py.patch
 )
 
+# The style follows sys-libs/libseccomp
 do_python() {
 	pushd "${S}/python"
 	"$@"
@@ -31,10 +32,18 @@ do_python() {
 
 src_compile() {
 	cmake_src_compile
-	use python && do_python distutils-r1_src_compile
+
+	if use python; then
+		local -x CPPFLAGS="-I\"${BUILD_DIR}/lib\" -I\"${S}/lib\" ${CPPFLAGS}"
+		local -x LDFLAGS="-L\"${BUILD_DIR}/lib/NGT\" ${LDFLAGS}"
+		do_python distutils-r1_src_compile
+	fi
 }
 
 src_install() {
 	cmake_src_install
-	use python && do_python distutils-r1_src_install
+
+	if use python; then
+		do_python distutils-r1_src_install
+	fi
 }
