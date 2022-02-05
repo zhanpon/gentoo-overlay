@@ -11,9 +11,12 @@ SRC_URI="https://github.com/yahoojapan/NGT/archive/refs/tags/v1.13.7.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
+IUSE="python"
 KEYWORDS="~amd64"
 
-BDEPEND="dev-python/pybind11"
+BDEPEND="
+        python? ( dev-python/pybind11 )
+"
 
 PATCHES=(
 	"${FILESDIR}"/${P}-cmake-destination.patch
@@ -28,10 +31,10 @@ do_python() {
 
 src_compile() {
 	cmake_src_compile
-	do_python distutils-r1_src_compile
+	use python && do_python distutils-r1_src_compile
 }
 
 src_install() {
 	cmake_src_install
-	do_python distutils-r1_src_install
+	use python && do_python distutils-r1_src_install
 }
