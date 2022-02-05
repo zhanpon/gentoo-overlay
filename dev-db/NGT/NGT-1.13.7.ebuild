@@ -11,11 +11,12 @@ SRC_URI="https://github.com/yahoojapan/NGT/archive/refs/tags/v1.13.7.tar.gz"
 
 LICENSE="Apache-2.0"
 SLOT="0"
+# TODO: static-libs, openmp
 IUSE="python"
 KEYWORDS="~amd64"
 
 BDEPEND="
-        python? ( dev-python/pybind11 )
+	python? ( dev-python/pybind11 )
 "
 
 PATCHES=(
