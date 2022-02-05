@@ -1,0 +1,17 @@
+diff --git a/python/setup.py b/python/setup.py
+index 2c077eb..d1e128f 100644
+--- a/python/setup.py
++++ b/python/setup.py
+@@ -25,12 +25,6 @@ if included_library_option in sys.argv:
+ 
+ if sys.version_info.major >= 3:
+     from setuptools import Extension
+-    try:
+-        # for pip < 10.0
+-        from pip import locations
+-    except ImportError:
+-        # for pip >= 10.0
+-        from pip._internal import locations
+ 
+ if os.path.isfile('../' + version_file):
+     shutil.copyfile('../' + version_file, version_file)
