@@ -20,10 +20,18 @@ PATCHES=(
 	"${FILESDIR}"/${P}-setup-py.patch
 )
 
+do_python() {
+	pushd "${S}/python"
+	"$@"
+	popd
+}
+
 src_compile() {
 	cmake_src_compile
+	do_python distutils-r1_src_compile
+}
 
-	pushd "${S}/python"
-	distutils-r1_src_compile
-	popd
+src_install() {
+	cmake_src_install
+	do_python distutils-r1_src_install
 }
